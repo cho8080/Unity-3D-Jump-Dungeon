@@ -5,3 +5,6 @@
 *.prefab text eol=crlf
 *.mat text eol=crlf
 *.controller text eol=crlf
+* text=auto
+*.txt text eol=crlf
+ProjectSettings/*.txt text eol=crlf
