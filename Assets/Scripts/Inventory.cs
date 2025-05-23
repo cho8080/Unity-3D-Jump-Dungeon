@@ -4,6 +4,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 public class Inventory : MonoBehaviour
 {
     public ItemSlot[] slots;
@@ -59,6 +60,15 @@ public class Inventory : MonoBehaviour
     // 아이템 사용 클릭
     public void UseItemBtnClick()
     {
+        // 버튼 선택된 상태에서 스페이스 바 눌릴시 클릭 이벤트 실행 방지
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // 버튼 눌리지 않도록 선택된 UI 제거
+            if (EventSystem.current.currentSelectedGameObject != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }     
+        }
         if (selectItem == null) { return; }
 
         // 아이템이 담긴 해당 슬롯을 찾아옴
@@ -68,7 +78,7 @@ public class Inventory : MonoBehaviour
         DisableAllOutLine();
 
         // 아이템 사용
-        slot.ItemUse();
+        slot?.ItemUse();
     }
     // 전체 슬롯의 아웃라인 비활성화
     public void DisableAllOutLine()
