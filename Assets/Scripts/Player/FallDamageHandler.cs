@@ -35,8 +35,12 @@ public class FallDamageHandler : MonoBehaviour
                 // 높이에 따른 데미지 계산해서
                 float damage = Mathf.Abs(rb.velocity.y + maxSafeFallSpeed) * fallDamageMultiplier;
                 damage =  Mathf.RoundToInt(damage);
+               
                 // 피격
                 damagealbe?.TalkDamage(damage);
+             
+                // 인벤토리에 체력 반영
+                FindObjectOfType<Inventory>()?.ShowPlayerAbility();
             }
             maxFallSpeed = 0; // 충돌 후 초기화
         }

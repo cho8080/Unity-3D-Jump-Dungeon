@@ -26,13 +26,16 @@ public class ItemObject : MonoBehaviour, IInteractable
         CharacterManager.Instance.Player.itemData = data;
        
         // 구독
-        CharacterManager.Instance.Player.addItem -= inventory.AddItem;
-        CharacterManager.Instance.Player.addItem += inventory.AddItem;
+        //CharacterManager.Instance.Player.addItem -= inventory.AddItem;
+        //CharacterManager.Instance.Player.addItem += inventory.AddItem;
+        CharacterManager.Instance.Player.UnsubscribeAddItem(inventory.AddItem);
+        CharacterManager.Instance.Player.SubscribeAddItem(inventory.AddItem);
 
         // addItem에 연결된 함수를 실행한다.
-        CharacterManager.Instance.Player.addItem?.Invoke();
+        // CharacterManager.Instance.Player.addItem?.Invoke();
+        CharacterManager.Instance.Player.InvokeAddItem();
 
-        CharacterManager.Instance.Player.itemData = null;
+         CharacterManager.Instance.Player.itemData = null;
 
         // 아이템 삭제하기
         Destroy(gameObject);

@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     // 현재 정보를 획득한 아이템 데이터
     public ItemData itemData;
-    public Action addItem;
+    private Action addItem;
 
     public float CurHp
     { get { return curHp; }
@@ -42,4 +42,8 @@ public class Player : MonoBehaviour
 
         curHp = maxHp;
     }
+    public void SubscribeAddItem(Action action) => addItem += action;
+    public void UnsubscribeAddItem(Action action) => addItem -= action;
+    public void InvokeAddItem() => addItem?.Invoke();
+
 }
