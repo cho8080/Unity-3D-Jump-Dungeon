@@ -3,12 +3,24 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class Inventory : MonoBehaviour
 {
     public ItemSlot[] slots;
     [HideInInspector] public ItemData selectItem;
+    public TextMeshProUGUI healthText; 
+    public TextMeshProUGUI speedText;
 
+    private void OnEnable()
+    {
+        ShowPlayerAbility();
+    }
+    // 플레이어 능력치 표시
+    public void ShowPlayerAbility()
+    {
+        healthText.text = CharacterManager.Instance.Player.CurHp.ToString();
+        speedText.text = CharacterManager.Instance.Player.MoveSpeed.ToString();
+    }
     // 아이템 증가
     public void AddItem()
     {  
@@ -66,17 +78,6 @@ public class Inventory : MonoBehaviour
             slots[i].outline.enabled = false;
         }
     }
-    // 인벤토리 내에 해당 아이템이 있는지 검사
-    //bool CheckItem(ItemData data)
-    //{
-    //    for (int i = 0; i < slots.Length; i++)
-    //    {
-    //        if (slots[i].item == data)
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //}
     // 아이템이 있는 슬롯 가져오기
     ItemSlot GetItemSlot(ItemData data)
     {

@@ -29,17 +29,21 @@ public class ItemSlot : MonoBehaviour
     {      
         if (item == null) { return; }
 
-        quantity--;
-
         // 아이템 정보 받아오기
         float value = item.consumable.value;
         float duration = item.consumable.duration;
 
         // 체력 회복 아이템이라면
         if (item.consumable.type == ConsumableType.Health)
-       {          
+       {
             // 체력 증가
-            CharacterManager.Instance.Player.CurHp += value;
+            CharacterManager.Instance.Player.CurHp = Mathf.Min(
+            CharacterManager.Instance.Player.CurHp + value,
+            CharacterManager.Instance.Player.MaxHp
+             );
+
+            // 만약 체력이 가득찬 상태라면 종료
+            if(CharacterManager.Instance.Player.CurHp == CharacterManager.Instance.Player.MaxHp) { return; }
         }
         // 스피드 업 아이템이라면
        else if(item.consumable.type == ConsumableType.SpeedBboost)
@@ -47,11 +51,13 @@ public class ItemSlot : MonoBehaviour
             // 스피드 증가
             StartCoroutine(SpeedUp(value, duration));
         }
-    
+        quantity--;
         outline.enabled = false;
 
         // 이미지와 개수 설정
         Set();
+
+        inventory.ShowPlayerAbility();
     }
 
     // 이미지와 개수 설정
@@ -85,5 +91,6 @@ public class ItemSlot : MonoBehaviour
         CharacterManager.Instance.Player.MoveSpeed += speed;
         yield return new WaitForSeconds(time);
         CharacterManager.Instance.Player.MoveSpeed -= speed;
+        inventory.ShowPlayerAbility();
     }
 }
