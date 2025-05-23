@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpPower = 5f;
 
+    // 현재 정보를 획득한 아이템 데이터
+    public ItemData itemData;
+    public Action addItem;
+
     public float CurHp
     { get { return curHp; }
       set { curHp = value; }
@@ -22,7 +27,9 @@ public class Player : MonoBehaviour
     { get { return maxHp; } }
 
     public float MoveSpeed
-    { get { return moveSpeed; } }
+    { get { return moveSpeed; }
+      set { moveSpeed = value; }
+    }
 
         public float JumpPower
     { get { return jumpPower; } }

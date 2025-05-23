@@ -7,10 +7,12 @@ using UnityEngine.InputSystem;
 // 플레이어 이동 관리
 public class PlayerMovement : MonoBehaviour
 {
-    int jumpCount;
+    [Header("Movement")]
+    private Rigidbody rb;
+    private Vector2 move;
+    private Vector2 mouseDelta;
+    private int jumpCount;
 
-    Vector2 move;
-    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -34,19 +36,20 @@ public class PlayerMovement : MonoBehaviour
     {
          move = context.ReadValue<Vector2>();       
     }
+
     // 점프 입력 처리
     public void OnJump(InputAction.CallbackContext context)
     {
         if(context.phase == InputActionPhase.Performed && jumpCount<2)
         {
             float jumpPower = CharacterManager.Instance.Player.JumpPower;
-            rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
+            rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             jumpCount++;
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Map"))
+        if(collision.gameObject.CompareTag("Ground"))
         {
             jumpCount = 0;
         }

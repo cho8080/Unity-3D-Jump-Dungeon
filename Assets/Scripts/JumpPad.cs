@@ -12,9 +12,9 @@ public class JumpPad : MonoBehaviour
 
         if (rb != null)
         {
-            // 아래 방향 속도를 초기화한 후, 위로 점프
+            // 아래 방향 속도를 초기화한 후
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            // 속도 변화량을 직접 더함. 질량 무시
+            // 점프
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }

@@ -32,7 +32,10 @@ public class FallDamageHandler : MonoBehaviour
             // 떨어지는 속도가 안전 낙하 속도보다 빠르다면
             if (maxFallSpeed < maxSafeFallSpeed)
             {
+                // 높이에 따른 데미지 계산해서
                 float damage = Mathf.Abs(rb.velocity.y + maxSafeFallSpeed) * fallDamageMultiplier;
+
+                // 피격
                 damagealbe?.TalkDamage(damage);
             }
             maxFallSpeed = 0; // 충돌 후 초기화

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb1f8ab9c62ea04baf0d11b4c0f8bba, type: 3}
+  m_Name: Item_Watermelon
+  m_EditorClassIdentifier: 
+  itemName: "\uC218\uBC15"
+  description: "\uC18D\uB3C4\uB97C 3\uCD08\uAC04 5\uC99D\uAC00 \uC2DC\uD0A8\uB2E4."
+  icon: {fileID: 21300000, guid: 43046426625693b41b1c2ee199d4c15a, type: 3}
+  consumable:
+    type: 1
+    value: 5
+    duration: 3
+  count: 0
+  maxCount: 12
