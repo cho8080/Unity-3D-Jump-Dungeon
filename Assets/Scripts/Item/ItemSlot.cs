@@ -18,6 +18,7 @@ public class ItemSlot : MonoBehaviour
     public void SlotClick()
     {           
         inventory.selectItem = item;
+        inventory.ItemInfoUpdate(item);
 
        // 전체 슬롯 아웃라인 비활성화
         inventory.DisableAllOutLine();

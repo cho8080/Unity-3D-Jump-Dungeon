@@ -29,7 +29,8 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveSpeed = CharacterManager.Instance.Player.MoveSpeed;
         Vector3 direction = new Vector3(move.x, 0, move.y);
-        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+        Vector3 movement = direction * moveSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + movement);
     }
     // 이동 입력 처리
    public void OnMove(InputAction.CallbackContext context)

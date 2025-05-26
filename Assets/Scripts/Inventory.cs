@@ -9,6 +9,8 @@ public class Inventory : MonoBehaviour
 {
     public ItemSlot[] slots;
     [HideInInspector] public ItemData selectItem;
+    public TextMeshProUGUI itemText;
+    public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI healthText; 
     public TextMeshProUGUI speedText;
 
@@ -126,6 +128,10 @@ public class Inventory : MonoBehaviour
                 slots[i].Clear();
             }
         }
+    }    // 현재 아이템 정보 업데이트
+    public void ItemInfoUpdate(ItemData data)
+    {
+        itemText.text = data.itemName;
+        descriptionText.text = data.description;
     }
-    
 }
